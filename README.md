@@ -19,6 +19,39 @@
 1. add submodule `cobra-cli add today --parent timezone`
 2. it creates today.go in cmd, but the init code use `timezone.AddCommand` which needs to be updated to `timezoneCmd`
 
+# Add Flags
+in init of the module use rootCmd.Flags()
+```
+func init() {
+	// Here you will define your flags and configuration settings.
+	// Cobra supports persistent flags, which, if defined here,
+	// will be global for your application.
+
+	// rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.bo-botflow.yaml)")
+
+	// Cobra also supports local flags, which will only run
+	// when this action is called directly.
+	rootCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+	rootCmd.Flags().StringVarP(&name, "name", "n", "World", "Name to greet")
+}
+```
+## Code pattern
+- create a name variable
+- reference the &name in Flags()
+- use name in your logic
+
+## Flag Usage
+`./mycli hello --name Alice`
+`./mycli hello -n Alice`
+
+# Package reference
+- go mod init creates the top level module example.com/go-project
+- all other modules are following that in the folder structure
+- create go-project/cmd folder
+    - create a root.go folder and has its package set to cmd
+- in main.go, you can import
+    - example.com/go-project/cmd package which contains all the cmd
+    - the use cmd.Public methods
 
 ## TODO: update code
 
