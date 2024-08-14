@@ -39,6 +39,7 @@ func init() {
 - create a name variable
 - reference the &name in Flags()
 - use name in your logic
+- optional: make required rootCmd.MarkFlagRequired("input")got 
 
 ## Flag Usage
 `./mycli hello --name Alice`
@@ -66,3 +67,21 @@ go mod init CobraDigitalOcean
 go install github.com/spf13/cobra-cli@latest
 
 cobra-cli init
+
+
+# Coding Reference
+
+## Map Array Ops
+- add to array, string map to array
+```
+cmMap := make(map[string][]ConversationMessage)
+cmMap[el.Group] = append(cmMap[el.Group], el)
+```
+
+## return string array
+output := [3]string{"abc", "efg", "abc"}
+return output[:]
+
+## Init a string array
+// Create a slice with the same length as lpBot.Groups
+strSlice := make([]string, len(lpBot.Groups))
