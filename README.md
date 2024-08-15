@@ -85,3 +85,32 @@ return output[:]
 ## Init a string array
 // Create a slice with the same length as lpBot.Groups
 strSlice := make([]string, len(lpBot.Groups))
+
+
+# Viper
+- load .env file
+```
+viper.SetConfigFile(".env")	
+// Read the .env file
+if err := viper.ReadInConfig(); err != nil {
+    fmt.Printf("Error reading config file, %s", err)
+}
+```
+
+- load os env
+`viper.AutomaticEnv()`
+
+- bind flags
+/ Bind flags to Viper
+if err := viper.BindPFlags(cmd.Flags()); err != nil {
+    log.Fatalf("Error binding flags: %v", err)
+}
+
+# create new error
+err := errors.New("Baking error 101")
+
+# Log
+- use  "github.com/charmbracelet/log" to do better logging
+- log.SetReportCaller(true) // log shows cmd and file and line number
+- log.Info("Current working directory:", "dir", dir)
+
